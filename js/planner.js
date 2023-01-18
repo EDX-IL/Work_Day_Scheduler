@@ -1,12 +1,11 @@
-let timeblocksEl = $('#timeblock');
-let currentDayEl = $('#currentDay'); 
+let timeblocksEl = $("#timeblock");
+let currentDayEl = $("#currentDay");
 
 //on page load DoPlanner function to set up page
 $(window).on("load", fncDoPlanner());
 
 //On User Click on TimeBlock, run Enter Event and Save to Local Storage
-timeblocksEl.on('click', fncAddEvent());
-
+timeblocksEl.on("click", fncAddEvent());
 
 //this function runs on page load
 function fncDoPlanner() {
@@ -24,13 +23,17 @@ function fncDoPlanner() {
 
 //Function to Display Current Day
 function fncDisplayCurrentDay() {
-    console.log(getFuncName());
-    let currentDay = new Date();
-    let currentDayName = currentDay;
-    console.log(currentDay);
-    currentDayEl.text(currentDayName);
+  // console.log(getFuncName());
+  const options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
 
-
+  let currentDay = new Date();
+  console.log("currentDay:" + currentDay);
+  currentDayEl.text(currentDay.toLocaleDateString("en-UK", options));
 }
 
 //Function to display timeblocks for standard business hours
@@ -46,20 +49,14 @@ function fncColourTimeBlocks() {
   console.log(getFuncName());
 }
 
-
 //function to enter event and save to local storage
-function fncAddEvent(){
-    console.log(getFuncName());
+function fncAddEvent() {
+  console.log(getFuncName());
 
-    fncSaveEvent();
-
-
-
+  fncSaveEvent();
 }
 
 //function to save event to local storage
-function fncSaveEvent(){
-    console.log(getFuncName());
-
-
+function fncSaveEvent() {
+  console.log(getFuncName());
 }
