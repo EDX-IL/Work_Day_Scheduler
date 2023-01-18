@@ -23,7 +23,7 @@ function fncDoPlanner() {
 
 //Function to Display Current Day
 function fncDisplayCurrentDay() {
-  // console.log(getFuncName());
+  console.log(getFuncName());
   const options = {
     weekday: "long",
     year: "numeric",
@@ -32,7 +32,7 @@ function fncDisplayCurrentDay() {
   };
 
   let currentDay = new Date();
-  console.log("currentDay:" + currentDay);
+  // console.log("currentDay:" + currentDay);
   currentDayEl.text(currentDay.toLocaleDateString("en-UK", options));
 }
 
