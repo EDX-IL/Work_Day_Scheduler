@@ -2,7 +2,6 @@ let timeblocksEl = $("#timeblock");
 let currentDayEl = $("#currentDay");
 let timeblocksContainerEl = $(".container");
 
-
 //on page load DoPlanner function to set up page
 $(window).on("load", fncDoPlanner());
 
@@ -42,27 +41,36 @@ function fncDisplayCurrentDay() {
 function fncDisplayTimeBlocksForDay() {
   console.log(getFuncName());
   let sbStartHour = 9;
-  let sbEndHour =  17;
-  
+  let sbEndHour = 17;
+
   //add timeblocks to timeblockContainerEL
   for (let index = sbStartHour; index <= sbEndHour; index++) {
     //console.log("hour:"+index)
     //add timeblocks for each hour here
-    let newTB = $("<li>");
-   // console.log("newTB:" + newTB);
-    newTB.text(index);
+    //variable for storing am/pm Time
+    let ampmTime = 0;
+    //TODO structure for timeblocks
+    let newTB = $("<p>");
+    newTB.addClass('time-block');
+    newTB.addClass('row');
+    newTB.addClass('hour');
+
+    //convert index to am/pm time
+    if (index <13){
+       ampmTime = (index+"am");
+    }
+    else {
+      ampmTime = ((index -12)+"pm");  
+    }
+
+    newTB.text(ampmTime);
     timeblocksContainerEl.append(newTB);
     console.log("timeblocksContainerEl:" + timeblocksContainerEl);
-
   }
-
-
 }
 
 //function to colour timeblocks based on current time and whether time block is past, present, future
-//past = red
-//present = yellow
-// future = green
+//past, present and future have css classes
 function fncColourTimeBlocks() {
   console.log(getFuncName());
 }
@@ -71,7 +79,7 @@ function fncColourTimeBlocks() {
 function fncAddEvent() {
   console.log(getFuncName());
 
-  fncSaveEvent();
+
 }
 
 //function to save event to local storage
