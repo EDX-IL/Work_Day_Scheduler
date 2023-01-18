@@ -1,4 +1,4 @@
-let timeblocksEl = $('#timeblocks');
+let timeblocksEl = $('#timeblock');
 
 //on page load DoPlanner function to set up page
 $(window).on("load", fncDoPlanner());
@@ -14,7 +14,7 @@ function fncDoPlanner() {
   //display the current day at the top of the calendar
   fncDisplayCurrentDay();
 
-  //display timeblock for standard business hours
+  //display timeblocks for standard business hours
   fncDisplayTimeBlocksForDay();
 
   //colour code each timeblock based on past, present, future
@@ -23,7 +23,11 @@ function fncDoPlanner() {
 
 //Function to Display Current Day
 function fncDisplayCurrentDay() {
-  console.log(getFuncName());
+    console.log(getFuncName());
+    let currentDay = new Date();
+    console.log(currentDay);
+    
+
 }
 
 //Function to display timeblocks for standard business hours
