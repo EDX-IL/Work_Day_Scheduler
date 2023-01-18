@@ -1,5 +1,4 @@
 # Work_Day_Scheduler
- a simple calendar application that allows a user to save events for each hour of the day
 
 ## Table of contents
 
@@ -19,9 +18,22 @@
 
 ## Overview
 
+- A simple calendar application that allows a user to save events for each hour of the day
+
+
 ### The challenge
 
-Describe the challenge here
+* Display the current day at the top of the calender when a user opens the planner.
+ 
+* Present timeblocks for standard business hours when the user scrolls down.
+ 
+* Color-code each timeblock based on past, present, and future when the timeblock is viewed.
+ 
+* Allow a user to enter an event when they click a timeblock
+
+* Save the event in local storage when the save button is clicked in that timeblock.
+
+* Persist events between refreshes of a page
 
 ### Screenshot
 
@@ -37,8 +49,8 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [https://github.com/EDX-IL/Work_Day_Scheduler](https://your-solution-url.com)
+- Live Site URL: [https://edx-il.github.io/Work_Day_Scheduler/](https://your-live-site-url.com)
 
 ## My process
 
@@ -46,7 +58,7 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 
 - Semantic HTML5 markup
 - CSS custom properties
-- Flexbox
+- Jquery
 - CSS Grid
 - Mobile-first workflow
 
