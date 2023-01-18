@@ -1,4 +1,5 @@
 let timeblocksEl = $('#timeblock');
+let currentDayEl = $('#currentDay'); 
 
 //on page load DoPlanner function to set up page
 $(window).on("load", fncDoPlanner());
@@ -25,8 +26,10 @@ function fncDoPlanner() {
 function fncDisplayCurrentDay() {
     console.log(getFuncName());
     let currentDay = new Date();
+    let currentDayName = currentDay;
     console.log(currentDay);
-    
+    currentDayEl.text(currentDayName);
+
 
 }
 
