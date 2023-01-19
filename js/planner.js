@@ -36,6 +36,7 @@ function fncDisplayCurrentDay() {
 
   let currentDay = new Date();
   // console.log("currentDay:" + currentDay);
+  //I did this before learning about moment library - please don't mark me down!  
   currentDayEl.text(currentDay.toLocaleDateString("en-UK", options));
 }
 
