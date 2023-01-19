@@ -56,6 +56,7 @@ function fncDisplayTimeBlocksForDay() {
     newTB.addClass("time-block");
     newTB.addClass("row");
     newTB.addClass("hour");
+    newTB.attr('data-hour',index);
 
     //convert index to am/pm time
     if (index < 13) {
@@ -78,6 +79,11 @@ function fncDisplayTimeBlocksForDay() {
 //past, present and future have css classes
 function fncColourTimeBlocks() {
   console.log(getFuncName());
+
+  //loop through standard business hours
+  //use data-hour id to set the color
+
+  
 }
 
 //function to enter event and save to local storage
