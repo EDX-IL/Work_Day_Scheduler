@@ -40,8 +40,8 @@ function fncDisplayCurrentDay() {
 //Function to display timeblocks for standard business hours
 function fncDisplayTimeBlocksForDay() {
   console.log(getFuncName());
-  let sbStartHour = 9;
-  let sbEndHour = 17;
+  let sbStartHour = 9; //0900
+  let sbEndHour = 17; //1700
 
   //add timeblocks to timeblockContainerEL
   for (let index = sbStartHour; index <= sbEndHour; index++) {
@@ -49,23 +49,28 @@ function fncDisplayTimeBlocksForDay() {
     //add timeblocks for each hour here
     //variable for storing am/pm Time
     let ampmTime = 0;
-    //TODO structure for timeblocks
-    let newTB = $("<p>");
-    newTB.addClass('time-block');
-    newTB.addClass('row');
-    newTB.addClass('hour');
+    //variable to hold timeblockHTML
+    let timeBlockHTML = "";
+    //TODO structure/html for timeblocks
+    let newTB = $("<div>");
+    newTB.addClass("time-block");
+    newTB.addClass("row");
+    newTB.addClass("hour");
 
     //convert index to am/pm time
-    if (index <13){
-       ampmTime = (index+"am");
-    }
-    else {
-      ampmTime = ((index -12)+"pm");  
+    if (index < 13) {
+      ampmTime = index + "am";
+    } else {
+      ampmTime = index - 12 + "pm";
     }
 
-    newTB.text(ampmTime);
+    timeBlockHTML = ampmTime;
+
+    console.log(timeBlockHTML);
+    newTB.text(timeBlockHTML);
     timeblocksContainerEl.append(newTB);
-    console.log("timeblocksContainerEl:" + timeblocksContainerEl);
+
+   // console.log("timeblocksContainerEl:" + timeblocksContainerEl);
   }
 }
 
@@ -78,8 +83,6 @@ function fncColourTimeBlocks() {
 //function to enter event and save to local storage
 function fncAddEvent() {
   console.log(getFuncName());
-
-
 }
 
 //function to save event to local storage
