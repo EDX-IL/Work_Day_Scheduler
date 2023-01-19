@@ -1,6 +1,8 @@
 let timeblocksEl = $("#timeblock");
 let currentDayEl = $("#currentDay");
 let timeblocksContainerEl = $(".container");
+let sbStartHour = 9; //0900
+let sbEndHour = 17; //1700
 
 //on page load DoPlanner function to set up page
 $(window).on("load", fncDoPlanner());
@@ -40,8 +42,7 @@ function fncDisplayCurrentDay() {
 //Function to display timeblocks for standard business hours
 function fncDisplayTimeBlocksForDay() {
   console.log(getFuncName());
-  let sbStartHour = 9; //0900
-  let sbEndHour = 17; //1700
+ 
 
   //add timeblocks to timeblockContainerEL
   for (let index = sbStartHour; index <= sbEndHour; index++) {
@@ -82,6 +83,12 @@ function fncColourTimeBlocks() {
 
   //loop through standard business hours
   //use data-hour id to set the color
+  for (let index = sbStartHour; index <= sbEndHour; index++) {
+   // let $datatmp = "#data-hour="+index+""";
+
+  //  $("#data-hour=9").background('red');
+    
+  }
 
   
 }
