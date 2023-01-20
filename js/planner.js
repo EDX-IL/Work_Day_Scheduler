@@ -30,7 +30,16 @@ function fncDoPlanner() {
 
   fncLoadSavedEvents();
 
-  //Once page loaded add listener for Save Button.
+
+
+
+  //Once page loaded add listener for Save Button and Event Data
+  let eventDataEl = $(".eventData");
+  eventDataEl.on('click',function(event){
+    //allow user to type data in
+  
+  });
+
   // Pass event through to function SaveEvent to know which save was clicked
   let saveBtnEl = $(".saveBtn");
   saveBtnEl.on("click", function (event) {
@@ -84,7 +93,7 @@ function fncDisplayTimeBlocksForDay() {
     }
     //Hour Column
     let newHour = $("<div>");
-    newHour.addClass("col-1");
+    newHour.addClass("col-1 hour");
     newHour.attr("data-hour", index);
     newHour.text(amPmTime);
 
@@ -92,7 +101,7 @@ function fncDisplayTimeBlocksForDay() {
 
     //Event Column
     let newEvent = $("<text>");
-    newEvent.addClass("col-10");
+    newEvent.addClass("col-10 eventData");
     newEvent.attr("data-event", index);
    // newEvent.text("place holder");
 
