@@ -124,29 +124,30 @@ function fncColourTimeBlocks() {
   for (let index = sbStartHour; index <= sbEndHour; index++) {
     // console.log($("#data-hour", index));
     //hourIndex number of current hour
-    let hourIndex = parseInt(moment().format("hh"));
-
+    let hourIndex = parseInt(moment().format("kk"));
+    hourIndex = 11;
     //new local variable to store TimeBlock Element
     let colourTimeBlockEl = $(".time-block");
 
-    console.log(colourTimeBlockEl.attr("data-row", index));
+   // console.log(colourTimeBlockEl.attr("data-row", index));
     //console.log(timeblocksEl.dataset.hour);
     //console.log( "timeblock attr: "+timeblocksEl.attributes);
     // console.log ("temp:" + tempblockEl.attributes);
 
     //TODO Figure out how to read data-row element
-
+    console.log("index:"+index);
+    console.log("hourIndex:"+hourIndex);
     //Past
-    // if (index > hourIndex) {
-    //     $(dataHourID).addClass("past");
-    // }
+    if (index < hourIndex) {
+        $(`.row[data-row=${index}]`).addClass("past");
+    }
     // //Present
-    // else if (index = hourIndex){
-    //      $(".row").addClass("present");
-    // }
-    // else if (index > hourIndex){
-    //   $(".row").addClass("future");
-    //  }
+    else if (index == hourIndex){
+      $(`.row[data-row=${index}]`).addClass("present");
+    }
+     else  {
+      $(`.row[data-row=${index}]`).addClass("future");
+      }
   }
 }
 
