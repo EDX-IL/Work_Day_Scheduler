@@ -19,8 +19,6 @@ timeblocksEl.on("click", fncAddEvent());
 function fncDoPlanner() {
   console.log(getFuncName());
 
-
-
   //display the current day at the top of the calendar
   fncDisplayCurrentDay();
 
@@ -32,19 +30,18 @@ function fncDoPlanner() {
 
   fncLoadSavedEvents();
 
-  //Once page loaded add listener for Save Button. 
+  //Once page loaded add listener for Save Button.
   // Pass event through to function SaveEvent to know which save was clicked
   let saveBtnEl = $(".saveBtn");
-  saveBtnEl.on('click',function(event) {
+  saveBtnEl.on("click", function (event) {
     fncSaveEvent(event);
   });
-
 }
 
 //Function to Display Current Day
 function fncDisplayCurrentDay() {
   console.log(getFuncName());
-  
+
   //This function checks that the start and end hours at from 0 to 24 and corrects them if not
   fncCheckStartAndEndHours();
 
@@ -144,7 +141,7 @@ function fncColourTimeBlocks() {
     //Present
     else if (index == hourIndex) {
       $(`.row[data-row=${index}]`).addClass("present");
-    } 
+    }
     //Future
     else {
       $(`.row[data-row=${index}]`).addClass("future");
@@ -158,16 +155,15 @@ function fncAddEvent() {
   console.log(getFuncName());
 }
 
-
 //function to save event to local storage
 function fncSaveEvent(event) {
   console.log(getFuncName());
   //use which save button was pressed as key for localstorage
-  let localStorageKey = $(event.target).data('save')
-  //use the button that was pressed (localStorageKey) to get data/text from same row
+  let localStorageKey = $(event.target).data("save");
+  //use the button that was pressed (localStorageKey) to get data/text from same row data-event
   let eventData = $(`[data-event=${localStorageKey}]`).text();
   //save above 2 to localstorage
- localStorage.setItem( localStorageKey,eventData);
+  localStorage.setItem(localStorageKey, eventData);
 }
 
 //function to check start and end hours

@@ -58,18 +58,21 @@
 
 ### What I learned
 
-I learned how to use JQuery to create dynamic HTML 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+- How to use JQuery to create dynamic HTML 
+- How to pass and query the event object
+- How to store / retrieve from local storage
 
-To see how you can add code snippets, see below:
 
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
-
-```css
-.proud-of-this-css {
-  color: papayawhip;
+This uses the event passed by the Save button click to get the relevent event info and then stores it to local storage
+```js
+ //function to save event to local storage
+function fncSaveEvent(event) {
+   //use which save button was pressed as key for localstorage
+  let localStorageKey = $(event.target).data("save");
+  //use the button that was pressed (localStorageKey) to get data/text from same row data-event
+  let eventData = $(`[data-event=${localStorageKey}]`).text();
+  //save above 2 to localstorage
+  localStorage.setItem(localStorageKey, eventData);
 }
 ```
 This sets the color of the row based on the ID of the row and whether it's in the past present or future. The template literal and string interpolation are a tidy way of accessing elements
@@ -104,7 +107,8 @@ I would like to further my knowledge of JQuery as it's widely used and very powe
 
 - [Date Prototype](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString) - This helped me to format the date natively in javascript rather than using a library. 
 - [Template Literal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) - Very useful concept when working with strings which is the case with data-id set with an index.
-- [Local Storage](https://www.w3schools.com/jsref/prop_win_localstorage.asp) - Useful reference document on how save and retrieve to localstorage
+- [Local Storage](https://www.w3schools.com/jsref/prop_win_localstorage.asp) - Useful reference document on how save and retrieve to local storage.
+- [JQuery Event Object](https://api.jquery.com/category/events/event-object/) - Use resource to know to how query the event data that was passed when a button was clicked.
 
 
 ## Author
