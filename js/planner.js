@@ -58,13 +58,13 @@ function fncDisplayTimeBlocksForDay() {
 
   //add timeblocks to timeblockContainerEL
   for (let index = sbStartHour; index <= sbEndHour; index++) {
-    //console.log("hour:"+index)
     //add timeblocks for each hour here
     //variable for storing am/pm Time
     let amPmTime = 0;
-    let newRow = $('<row>');
+    let newRow = $("<div>");
     newRow.addClass("time-block row hour");
-    newRow.attr('data-row', index);
+    newRow.attr("data-row", index);
+    //console.log("NewRow:"+newRow);
 
     if (index == 0) {
       amPmTime = index + 12 + "am";
@@ -74,34 +74,32 @@ function fncDisplayTimeBlocksForDay() {
       amPmTime = index - 12 + "pm";
     }
     //Hour Column
-    let newHour = $('<div>');
+    let newHour = $("<div>");
     newHour.addClass("col-1");
-    newHour.attr('data-hour',index);
+    newHour.attr("data-hour", index);
     newHour.text(amPmTime);
 
     newRow.append(newHour);
 
     //Event Column
-    let newEvent = $('<text>');
+    let newEvent = $("<text>");
     newEvent.addClass("col-10");
-    newEvent.attr('data-event',index);
+    newEvent.attr("data-event", index);
     newEvent.text("place holder");
 
-    newRow.append(newEvent)        ;
+    newRow.append(newEvent);
 
     //Save Column
-    let newSave = $('<button>');
+    let newSave = $("<button>");
     newSave.addClass("col-1 saveButton");
-    newSave.attr('data-save',index);
+    newSave.attr("data-save", index);
     newSave.text("SAVE");
-    
-    newRow.append(newSave);
 
+    newRow.append(newSave);
 
     timeblocksContainerEl.append(newRow);
 
-
-    //REDUNDANT HTML THAT I USED INITIALLY
+    //REDUNDANT HTML THAT I USED INITIALLY - LEAVING AS WORKING
     // let rowHTML = '<row class="time-block row hour" id=temp-block data-row="'+ index +'">';
     // let divHourHtml =
     //   '<div class="col-1" data-hour=' + index + "> " + amPmTime + " </div>";
@@ -113,7 +111,6 @@ function fncDisplayTimeBlocksForDay() {
     // let totalHTML = rowHTML + divHourHtml + eventHTML + saveHTML + endRowHTML;
 
     //timeblocksContainerEl.append(totalHTML);
-
   }
 }
 
@@ -127,38 +124,29 @@ function fncColourTimeBlocks() {
   for (let index = sbStartHour; index <= sbEndHour; index++) {
     // console.log($("#data-hour", index));
     //hourIndex number of current hour
-    let hourIndex = parseInt( moment().format("hh"));
+    let hourIndex = parseInt(moment().format("hh"));
 
-    // variable to store HTML ID for row
-    let dataRowID = "#data-row="+'"'+index+'"';
-  //  console.log($(".row"));
-    //console.log("dataRowID="+dataRowID);
-  // console.log("object dataRowID"+ $(dataRowID))
-    //console.log ($("#data-row=\"9\"")) ;
-    let timeblocksEl = $(".time-block");
+    //new local variable to store TimeBlock Element
+    let colourTimeBlockEl = $(".time-block");
 
-    console.log(timeblocksEl.attr("data-row"));
+    console.log(colourTimeBlockEl.attr("data-row", index));
     //console.log(timeblocksEl.dataset.hour);
     //console.log( "timeblock attr: "+timeblocksEl.attributes);
-   // console.log ("temp:" + tempblockEl.attributes);
-    
-    
+    // console.log ("temp:" + tempblockEl.attributes);
 
+    //TODO Figure out how to read data-row element
 
-      //TODO Figure out how to read data-row element
-      
-      //Past
-      // if (index > hourIndex) {
-      //     $(dataHourID).addClass("past");
-      // }
-      // //Present
-      // else if (index = hourIndex){
-      //      $(".row").addClass("present");
-      // }
-      // else if (index > hourIndex){
-      //   $(".row").addClass("future");
+    //Past
+    // if (index > hourIndex) {
+    //     $(dataHourID).addClass("past");
+    // }
+    // //Present
+    // else if (index = hourIndex){
+    //      $(".row").addClass("present");
+    // }
+    // else if (index > hourIndex){
+    //   $(".row").addClass("future");
     //  }
-    
   }
 }
 
