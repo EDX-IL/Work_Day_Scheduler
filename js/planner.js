@@ -91,10 +91,10 @@ function fncDisplayTimeBlocksForDay() {
     newRow.append(newHour);
 
     //Event Column
-    let newEvent = $("<input>");
+    let newEvent = $("<text>");
     newEvent.addClass("col-10");
     newEvent.attr("data-event", index);
-    newEvent.text("place holder");
+   // newEvent.text("place holder");
 
     newRow.append(newEvent);
 
@@ -166,29 +166,37 @@ function fncSaveEvent(event) {
   localStorage.setItem(localStorageKey, eventData);
 }
 
-//function to check start and end hours
-function fncCheckStartAndEndHours() {
-  console.log(getFuncName());
-  //check start and end hours
-  if (sbStartHour > sbEndHour) {
-    sbStartHour = sbEndHour;
-  }
-  if (sbStartHour < 0) {
-    sbStartHour = 0;
-  }
-  if (sbStartHour > 24) {
-    sbStartHour = 24;
-  }
-  if (sbEndHour < 0) {
-    sbEndHour = 0;
-  }
-  if (sbEndHour > 24) {
-    sbEndHour = 24;
-  }
-}
-
 //TODO
 function fncLoadSavedEvents() {
   console.log(getFuncName());
+  for (let index = sbStartHour; index <= sbEndHour; index++)  {
+ // console.log(index+" "+ localStorage.getItem(index));
+ let tempStr =  localStorage.getItem(index)
+ console.log("tempStr:"+tempStr+index);
+ //console.log( $(`[data-event=${index}]`).text());
+  $(`[data-event=${index}]`).text("test"+index);
+    
+  }
   //$("event-item").text(localStorage.getItem('WhereTheEventItemWasStored'));
 }
+
+    //function to check start and end hours
+    function fncCheckStartAndEndHours() {
+      console.log(getFuncName());
+      //check start and end hours
+      if (sbStartHour > sbEndHour) {
+        sbStartHour = sbEndHour;
+      }
+      if (sbStartHour < 0) {
+        sbStartHour = 0;
+      }
+      if (sbStartHour > 24) {
+        sbStartHour = 24;
+      }
+      if (sbEndHour < 0) {
+        sbEndHour = 0;
+      }
+      if (sbEndHour > 24) {
+        sbEndHour = 24;
+      }
+    }
