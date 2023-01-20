@@ -1,8 +1,8 @@
 let timeblocksEl = $("#timeblock");
 let currentDayEl = $("#currentDay");
 let timeblocksContainerEl = $(".container");
-let sbStartHour = 0; //0900
-let sbEndHour =25; //1700
+let sbStartHour = 9; //0900
+let sbEndHour =17; //1700
 
 //on page load DoPlanner function to set up page
 $(window).on("load", fncDoPlanner());
@@ -15,13 +15,13 @@ function fncDoPlanner() {
   console.log(getFuncName());
 
   //display the current day at the top of the calendar
-  fncDisplayCurrentDay();
+ fncDisplayCurrentDay();
 
   //display timeblocks for standard business hours
-  fncDisplayTimeBlocksForDay();
+ fncDisplayTimeBlocksForDay();
 
   //colour code each timeblock based on past, present, future
-  fncColourTimeBlocks();
+ fncColourTimeBlocks();
 }
 
 //Function to Display Current Day
@@ -57,11 +57,11 @@ function fncDisplayTimeBlocksForDay() {
     //console.log("hour:"+index)
     //add timeblocks for each hour here
     //variable for storing am/pm Time
-    let ampmTime = 0;
+    let amPmTime = 0;
     //variable to hold timeblockHTML
     let timeBlockHTML = "";
     //TODO structure/html for timeblocks
-    let newTB = $("<div>");
+    let newTB = $("<row>");
     newTB.addClass("time-block");
     newTB.addClass("row");
     newTB.addClass("hour");
@@ -69,19 +69,29 @@ function fncDisplayTimeBlocksForDay() {
 
     //convert index to am/pm time
     if (index == 0) {
-      ampmTime = index +12 + "am";
+      amPmTime = index +12 + "am";
     } else if (index < 13) {
-      ampmTime = index + "am";
+      amPmTime = index + "am";
     } else {
-      ampmTime = index - 12 + "pm";
+      amPmTime = index - 12 + "pm";
     }
 
-    timeBlockHTML = ampmTime;
 
-    console.log(timeBlockHTML);
-    newTB.text(timeBlockHTML);
+
+   amPmTime;
+
+   
+
+
+ 
+
+
+
+    console.log(amPmTime);
+    newTB.text(amPmTime);
     timeblocksContainerEl.append(newTB);
 
+  
     // console.log("timeblocksContainerEl:" + timeblocksContainerEl);
   }
 }
@@ -94,8 +104,14 @@ function fncColourTimeBlocks() {
   //loop through standard business hours
   //use data-hour id to set the color
   for (let index = sbStartHour; index <= sbEndHour; index++) {
-    // let $datatmp = "#data-hour="+index+""";
-    //  $("#data-hour=9").background('red');
+    console.log($("#data-hour",index));
+
+
+   //$("#data-hour",index).css('background-color','red');
+  //ToDo - rather than row...select using ID data-hour
+  $(".row").addClass("past");
+  $(".row").addClass("present");
+  $(".row").addClass("future");
   }
 }
 
