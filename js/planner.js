@@ -3,6 +3,8 @@
 let currentDayEl = $("#currentDay");
 let timeblocksContainerEl = $(".container");
 
+
+
 let sbStartHour = 0; //0900
 let sbEndHour = 24; //1700
 
@@ -17,6 +19,8 @@ timeblocksEl.on("click", fncAddEvent());
 function fncDoPlanner() {
   console.log(getFuncName());
 
+
+
   //display the current day at the top of the calendar
   fncDisplayCurrentDay();
 
@@ -27,6 +31,15 @@ function fncDoPlanner() {
   fncColourTimeBlocks();
 
   fncLoadSavedEvents();
+
+   let saveBtnEl = $(".saveBtn");
+  // let saveBtnEl = newLocal;
+  // //listen for saveBtnPress
+  saveBtnEl.on('click',function() {
+    alert("save clicked");
+    fncSaveEvent();
+  });
+
 }
 
 //Function to Display Current Day
