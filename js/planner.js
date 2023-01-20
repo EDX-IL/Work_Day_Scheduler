@@ -91,7 +91,7 @@ function fncDisplayTimeBlocksForDay() {
     newRow.append(newHour);
 
     //Event Column
-    let newEvent = $("<text>");
+    let newEvent = $("<input>");
     newEvent.addClass("col-10");
     newEvent.attr("data-event", index);
     newEvent.text("place holder");
