@@ -3,10 +3,10 @@
 let currentDayEl = $("#currentDay");
 let timeblocksContainerEl = $(".container");
 
+//TODO-remove console.logs
 
-
-let sbStartHour = 0; //0900
-let sbEndHour = 24; //1700
+let sbStartHour = 9; //0900
+let sbEndHour = 17; //1700
 
 //on page load DoPlanner function to set up page
 $(window).on("load", fncDoPlanner());
@@ -32,11 +32,10 @@ function fncDoPlanner() {
 
   fncLoadSavedEvents();
 
-   let saveBtnEl = $(".saveBtn");
-  // let saveBtnEl = newLocal;
-  // //listen for saveBtnPress
+  //Once page loaded add listener for Save Button. 
+  // Pass event through to function SaveEvent to know which save was clicked
+  let saveBtnEl = $(".saveBtn");
   saveBtnEl.on('click',function(event) {
-    alert("save clicked");
     fncSaveEvent(event);
   });
 
@@ -159,12 +158,16 @@ function fncAddEvent() {
   console.log(getFuncName());
 }
 
-//TODO
+
 //function to save event to local storage
 function fncSaveEvent(event) {
   console.log(getFuncName());
-  console.log("saveEvent:"+event);
-  localStorage.setItem("9a", "something");
+  //use which save button was pressed as key for localstorage
+  let localStorageKey = $(event.target).data('save')
+  //use the button that was pressed (localStorageKey) to get data/text from same row
+  let eventData = $(`[data-event=${localStorageKey}]`).text();
+  //save above 2 to localstorage
+ localStorage.setItem( localStorageKey,eventData);
 }
 
 //function to check start and end hours
