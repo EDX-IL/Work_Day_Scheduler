@@ -1,4 +1,4 @@
-//let timeblocksEl = $("#timeblock");
+let timeblocksEl = $("#timeblock");
 let currentDayEl = $("#currentDay");
 let timeblocksContainerEl = $(".container");
 let sbStartHour = 9; //0900
@@ -67,13 +67,13 @@ function fncDisplayTimeBlocksForDay() {
     } else {
       amPmTime = index - 12 + "pm";
     }
-
-    let rowHTML = '<row class="time-block row hour">';
+    console.log(index);
+    let rowHTML = '<row class="time-block row hour" data-row="'+ index +'">';
     let divHourHtml =
       '<div class="col-1" data-hour=' + index + "> " + amPmTime + " </div>";
-    let eventHTML = '<text class="col-10">' + "test" + "</text>";
+    let eventHTML = '<text class="col-10" data-event="'+index +'">' + "test" + "</text>";
     let saveHTML =
-      '<button type=button class="col-1 savebutton"> Save </button>';
+      '<button type=button class="col-1 savebutton" data-save="'+ index +'"> Save </button>';
     let endRowHTML = "</row";
 
     let totalHTML = rowHTML + divHourHtml + eventHTML + saveHTML + endRowHTML;
@@ -91,13 +91,31 @@ function fncColourTimeBlocks() {
   //loop through standard business hours
   //use data-hour id to set the color
   for (let index = sbStartHour; index <= sbEndHour; index++) {
-    console.log($("#data-hour", index));
+    // console.log($("#data-hour", index));
+    //hourIndex number of current hour
+    let hourIndex = parseInt( moment().format("hh"));
 
-    //$("#data-hour",index).css('background-color','red');
-    //ToDo - rather than row...select using ID data-hour - then use if statement to select which one
-    // $(".row").addClass("past");
-    // $(".row").addClass("present");
-    // $(".row").addClass("future");
+    // variable to store HTML ID for row
+    let dataRowID = "#data-row="+'"'+index+'"';
+  //  console.log($(".row"));
+   console.log("dataRowID="+dataRowID);
+  // console.log("object dataRowID"+ $(dataRowID))
+    //console.log ($("#data-row=\"9\"")) ;
+
+      //TODO Figure out how to read data-hour element
+      
+      //Past
+      // if (index > hourIndex) {
+      //     $(dataHourID).addClass("past");
+      // }
+      // //Present
+      // else if (index = hourIndex){
+      //      $(".row").addClass("present");
+      // }
+      // else if (index > hourIndex){
+      //   $(".row").addClass("future");
+    //  }
+    
   }
 }
 
