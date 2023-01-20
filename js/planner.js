@@ -35,9 +35,9 @@ function fncDoPlanner() {
    let saveBtnEl = $(".saveBtn");
   // let saveBtnEl = newLocal;
   // //listen for saveBtnPress
-  saveBtnEl.on('click',function() {
+  saveBtnEl.on('click',function(event) {
     alert("save clicked");
-    fncSaveEvent();
+    fncSaveEvent(event);
   });
 
 }
@@ -161,8 +161,9 @@ function fncAddEvent() {
 
 //TODO
 //function to save event to local storage
-function fncSaveEvent() {
+function fncSaveEvent(event) {
   console.log(getFuncName());
+  console.log("saveEvent:"+event);
   localStorage.setItem("9a", "something");
 }
 
