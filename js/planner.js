@@ -1,8 +1,8 @@
 let timeblocksEl = $("#timeblock");
 let currentDayEl = $("#currentDay");
 let timeblocksContainerEl = $(".container");
-let sbStartHour = 9; //0900
-let sbEndHour = 17; //1700
+let sbStartHour = 0; //0900
+let sbEndHour =25; //1700
 
 //on page load DoPlanner function to set up page
 $(window).on("load", fncDoPlanner());
@@ -27,6 +27,14 @@ function fncDoPlanner() {
 //Function to Display Current Day
 function fncDisplayCurrentDay() {
   console.log(getFuncName());
+
+  fncCheckStartAndEndHours();
+
+
+  if (sbStartHour > sbEndHour){
+    sbStartHour = sbEndHour;
+  }
+
   const options = {
     weekday: "long",
     year: "numeric",
@@ -36,14 +44,13 @@ function fncDisplayCurrentDay() {
 
   let currentDay = new Date();
   // console.log("currentDay:" + currentDay);
-  //I did this before learning about moment library - please don't mark me down!  
+  //I did this before learning about moment library - please don't mark me down!
   currentDayEl.text(currentDay.toLocaleDateString("en-UK", options));
 }
 
 //Function to display timeblocks for standard business hours
 function fncDisplayTimeBlocksForDay() {
   console.log(getFuncName());
- 
 
   //add timeblocks to timeblockContainerEL
   for (let index = sbStartHour; index <= sbEndHour; index++) {
@@ -58,10 +65,12 @@ function fncDisplayTimeBlocksForDay() {
     newTB.addClass("time-block");
     newTB.addClass("row");
     newTB.addClass("hour");
-    newTB.attr('data-hour',index);
+    newTB.attr("data-hour", index);
 
     //convert index to am/pm time
-    if (index < 13) {
+    if (index == 0) {
+      ampmTime = index +12 + "am";
+    } else if (index < 13) {
       ampmTime = index + "am";
     } else {
       ampmTime = index - 12 + "pm";
@@ -73,7 +82,7 @@ function fncDisplayTimeBlocksForDay() {
     newTB.text(timeBlockHTML);
     timeblocksContainerEl.append(newTB);
 
-   // console.log("timeblocksContainerEl:" + timeblocksContainerEl);
+    // console.log("timeblocksContainerEl:" + timeblocksContainerEl);
   }
 }
 
@@ -85,13 +94,9 @@ function fncColourTimeBlocks() {
   //loop through standard business hours
   //use data-hour id to set the color
   for (let index = sbStartHour; index <= sbEndHour; index++) {
-   // let $datatmp = "#data-hour="+index+""";
-
-  //  $("#data-hour=9").background('red');
-    
+    // let $datatmp = "#data-hour="+index+""";
+    //  $("#data-hour=9").background('red');
   }
-
-  
 }
 
 //function to enter event and save to local storage
@@ -102,4 +107,28 @@ function fncAddEvent() {
 //function to save event to local storage
 function fncSaveEvent() {
   console.log(getFuncName());
+}
+
+//function to check start and end hours
+function fncCheckStartAndEndHours(){
+  console.log(getFuncName());
+//check start and end hours 
+if (sbStartHour > sbEndHour){
+  sbStartHour = sbEndHour;
+}
+if (sbStartHour < 0) {
+  sbStartHour = 0;
+}
+if (sbStartHour > 24 ) {
+  sbStartHour = 24;
+}
+if (sbEndHour < 0) {
+  sbEndHour = 0;
+}
+if (sbEndHour > 24 ) {
+  sbEndHour = 24;
+}
+
+
+
 }
