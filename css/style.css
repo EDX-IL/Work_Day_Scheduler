@@ -75,13 +75,3 @@ textarea {
 }
 
 
-.saveButton {
-  display: flex;
-  width: 95%;
-  border: none;
- /* background-color: #04AA6D; */
- /* padding: 25px 25px;*/
-  font-size: 100%;
-  cursor: pointer;
-  text-align: center;
-}

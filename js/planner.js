@@ -3,8 +3,8 @@
 let currentDayEl = $("#currentDay");
 let timeblocksContainerEl = $(".container");
 
-let sbStartHour = 9; //0900
-let sbEndHour = 17; //1700
+let sbStartHour = 0; //0900
+let sbEndHour = 24; //1700
 
 //on page load DoPlanner function to set up page
 $(window).on("load", fncDoPlanner());
@@ -32,7 +32,8 @@ function fncDoPlanner() {
 //Function to Display Current Day
 function fncDisplayCurrentDay() {
   console.log(getFuncName());
-
+  
+  //This function checks that the start and end hours at from 0 to 24 and corrects them if not
   fncCheckStartAndEndHours();
 
   if (sbStartHour > sbEndHour) {
@@ -47,8 +48,7 @@ function fncDisplayCurrentDay() {
   };
 
   let currentDay = new Date();
-  // console.log("currentDay:" + currentDay);
-  //I did this before learning about moment library - please don't mark me down!
+  //I did this before learning about moment library. I've used moment in fncColourTimeBlocks  - please don't mark me down! :)
   currentDayEl.text(currentDay.toLocaleDateString("en-UK", options));
 }
 
@@ -59,12 +59,12 @@ function fncDisplayTimeBlocksForDay() {
   //add timeblocks to timeblockContainerEL
   for (let index = sbStartHour; index <= sbEndHour; index++) {
     //add timeblocks for each hour here
+
     //variable for storing am/pm Time
     let amPmTime = 0;
     let newRow = $("<div>");
     newRow.addClass("time-block row hour");
     newRow.attr("data-row", index);
-    //console.log("NewRow:"+newRow);
 
     if (index == 0) {
       amPmTime = index + 12 + "am";
@@ -91,7 +91,7 @@ function fncDisplayTimeBlocksForDay() {
 
     //Save Column
     let newSave = $("<button>");
-    newSave.addClass("col-1 saveButton");
+    newSave.addClass("col-1 saveBtn");
     newSave.attr("data-save", index);
     newSave.text("SAVE");
 
@@ -115,47 +115,38 @@ function fncDisplayTimeBlocksForDay() {
 }
 
 //function to colour timeblocks based on current time and whether time block is past, present, future
-//past, present and future have css classes
+//past, present and future are css classes
 function fncColourTimeBlocks() {
   console.log(getFuncName());
 
-  //loop through standard business hours
-  //use data-hour id to set the color
+  //loop through standard business hours (set at top)
+  //use data-row id to set the color
   for (let index = sbStartHour; index <= sbEndHour; index++) {
-    // console.log($("#data-hour", index));
-    //hourIndex number of current hour
+    //hourIndex is the 24hr number of current hour
     let hourIndex = parseInt(moment().format("kk"));
-    hourIndex = 11;
-    //new local variable to store TimeBlock Element
-    let colourTimeBlockEl = $(".time-block");
 
-   // console.log(colourTimeBlockEl.attr("data-row", index));
-    //console.log(timeblocksEl.dataset.hour);
-    //console.log( "timeblock attr: "+timeblocksEl.attributes);
-    // console.log ("temp:" + tempblockEl.attributes);
-
-    //TODO Figure out how to read data-row element
-    console.log("index:"+index);
-    console.log("hourIndex:"+hourIndex);
     //Past
     if (index < hourIndex) {
-        $(`.row[data-row=${index}]`).addClass("past");
+      $(`.row[data-row=${index}]`).addClass("past");
     }
-    // //Present
-    else if (index == hourIndex){
+    //Present
+    else if (index == hourIndex) {
       $(`.row[data-row=${index}]`).addClass("present");
-    }
-     else  {
+    } 
+    //Future
+    else {
       $(`.row[data-row=${index}]`).addClass("future");
-      }
+    }
   }
 }
 
+//TODO
 //function to enter event and save to local storage
 function fncAddEvent() {
   console.log(getFuncName());
 }
 
+//TODO
 //function to save event to local storage
 function fncSaveEvent() {
   console.log(getFuncName());
@@ -183,6 +174,7 @@ function fncCheckStartAndEndHours() {
   }
 }
 
+//TODO
 function fncLoadSavedEvents() {
   console.log(getFuncName());
   //$("event-item").text(localStorage.getItem('WhereTheEventItemWasStored'));

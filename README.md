@@ -53,10 +53,12 @@
 - FlexBox
 - Javascript
 - JScript
+- JQuery
 
 
 ### What I learned
 
+I learned how to use JQuery to create dynamic HTML 
 Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
 
 To see how you can add code snippets, see below:
@@ -70,29 +72,40 @@ To see how you can add code snippets, see below:
   color: papayawhip;
 }
 ```
-
+This sets the color of the row based on the ID of the row and whether it's in the past present or future. The template literal and string interpolation are a tidy way of accessing elements
 ```js
-const proudOfThisFunc = () => {
-  console.log("🎉");
-};
+for (let index = sbStartHour; index <= sbEndHour; index++) {
+    //hourIndex is the 24hr number of current hour
+    let hourIndex = parseInt(moment().format("kk"));
+
+    //Past
+    if (index < hourIndex) {
+      $(`.row[data-row=${index}]`).addClass("past");
+    }
+    //Present
+    else if (index == hourIndex) {
+      $(`.row[data-row=${index}]`).addClass("present");
+    } 
+    //Future
+    else {
+      $(`.row[data-row=${index}]`).addClass("future");
+    }
+  }
 ```
 
-If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
 
-**Note: Delete this note and the content within this section and replace with your own learnings.**
 
 ### Continued development
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
+I would like to further my knowledge of JQuery as it's widely used and very powerful.
 
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
 
 ### Useful resources
 
 - [Date Prototype](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString) - This helped me to format the date natively in javascript rather than using a library. 
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
+- [Template Literal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) - Very useful concept when working with strings which is the case with data-id set with an index.
 
-**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
+
 
 ## Author
  Ian Logendra
@@ -101,7 +114,7 @@ Use this section to outline areas that you want to continue focusing on in futur
 
 ## Acknowledgments
 
-- Noah (TA) - Tremendous help. I spent 2 days with the QuerySelector running once at the beginning (rather than before it was needed which meant there were no attributes to read!), and also was able to explain how to use JQuery methods to create HTML rather than using the string concatting way i'd used.
-- Andrew (TA)
+- Noah (TA) - Tremendous help. I spent 2 days with the QuerySelector running once at the beginning (rather than before it was needed which meant there were no attributes to read!), and also was able to explain how to use JQuery methods to create HTML rather than using the string concatenation way i'd used.
+- Andrew (TA) - Excellent help diagnosing an issue with Live Server not reloading correctly and showing me template literals as way of accessing the defined data-ids
 - Scott (TA)
 
