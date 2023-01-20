@@ -101,7 +101,7 @@ Use this section to outline areas that you want to continue focusing on in futur
 
 ## Acknowledgments
 
-- Noah (TA)
+- Noah (TA) - Tremendous help. I spent 2 days with the QuerySelector running once at the beginning (rather than before it was needed which meant there were no attributes to read!), and also was able to explain how to use JQuery methods to create HTML rather than using the string concatting way i'd used.
 - Andrew (TA)
 - Scott (TA)
 
