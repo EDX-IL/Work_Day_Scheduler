@@ -1,11 +1,14 @@
-let timeblocksEl = $("#timeblock");
+//let timeblocksEl = $("#timeblock");
+//let tempblockEl = $('#temp-block');
 let currentDayEl = $("#currentDay");
 let timeblocksContainerEl = $(".container");
+
 let sbStartHour = 9; //0900
 let sbEndHour = 17; //1700
 
 //on page load DoPlanner function to set up page
 $(window).on("load", fncDoPlanner());
+let timeblocksEl = $(".time-block");
 
 //On User Click on TimeBlock, run Enter Event and Save to Local Storage
 timeblocksEl.on("click", fncAddEvent());
@@ -59,7 +62,10 @@ function fncDisplayTimeBlocksForDay() {
     //add timeblocks for each hour here
     //variable for storing am/pm Time
     let amPmTime = 0;
-        
+    let newRow = $('<row>');
+    newRow.addClass("time-block row hour");
+    newRow.attr('data-row', index);
+
     if (index == 0) {
       amPmTime = index + 12 + "am";
     } else if (index < 13) {
@@ -67,18 +73,46 @@ function fncDisplayTimeBlocksForDay() {
     } else {
       amPmTime = index - 12 + "pm";
     }
-    console.log(index);
-    let rowHTML = '<row class="time-block row hour" data-row="'+ index +'">';
-    let divHourHtml =
-      '<div class="col-1" data-hour=' + index + "> " + amPmTime + " </div>";
-    let eventHTML = '<text class="col-10" data-event="'+index +'">' + "test" + "</text>";
-    let saveHTML =
-      '<button type=button class="col-1 savebutton" data-save="'+ index +'"> Save </button>';
-    let endRowHTML = "</row";
+    //Hour Column
+    let newHour = $('<div>');
+    newHour.addClass("col-1");
+    newHour.attr('data-hour',index);
+    newHour.text(amPmTime);
 
-    let totalHTML = rowHTML + divHourHtml + eventHTML + saveHTML + endRowHTML;
+    newRow.append(newHour);
 
-    timeblocksContainerEl.append(totalHTML);
+    //Event Column
+    let newEvent = $('<text>');
+    newEvent.addClass("col-10");
+    newEvent.attr('data-event',index);
+    newEvent.text("place holder");
+
+    newRow.append(newEvent)        ;
+
+    //Save Column
+    let newSave = $('<button>');
+    newSave.addClass("col-1 saveButton");
+    newSave.attr('data-save',index);
+    newSave.text("SAVE");
+    
+    newRow.append(newSave);
+
+
+    timeblocksContainerEl.append(newRow);
+
+
+    //REDUNDANT HTML THAT I USED INITIALLY
+    // let rowHTML = '<row class="time-block row hour" id=temp-block data-row="'+ index +'">';
+    // let divHourHtml =
+    //   '<div class="col-1" data-hour=' + index + "> " + amPmTime + " </div>";
+    // let eventHTML = '<text class="col-10" data-event="'+index +'">' + "test" + "</text>";
+    // let saveHTML =
+    //   '<button type=button class="col-1 savebutton" data-save="'+ index +'"> Save </button>';
+    // let endRowHTML = "</row";
+
+    // let totalHTML = rowHTML + divHourHtml + eventHTML + saveHTML + endRowHTML;
+
+    //timeblocksContainerEl.append(totalHTML);
 
   }
 }
@@ -98,11 +132,20 @@ function fncColourTimeBlocks() {
     // variable to store HTML ID for row
     let dataRowID = "#data-row="+'"'+index+'"';
   //  console.log($(".row"));
-   console.log("dataRowID="+dataRowID);
+    //console.log("dataRowID="+dataRowID);
   // console.log("object dataRowID"+ $(dataRowID))
     //console.log ($("#data-row=\"9\"")) ;
+    let timeblocksEl = $(".time-block");
 
-      //TODO Figure out how to read data-hour element
+    console.log(timeblocksEl.attr("data-row"));
+    //console.log(timeblocksEl.dataset.hour);
+    //console.log( "timeblock attr: "+timeblocksEl.attributes);
+   // console.log ("temp:" + tempblockEl.attributes);
+    
+    
+
+
+      //TODO Figure out how to read data-row element
       
       //Past
       // if (index > hourIndex) {
