@@ -1,8 +1,8 @@
-let timeblocksEl = $("#timeblock");
+//let timeblocksEl = $("#timeblock");
 let currentDayEl = $("#currentDay");
 let timeblocksContainerEl = $(".container");
 let sbStartHour = 9; //0900
-let sbEndHour =17; //1700
+let sbEndHour = 17; //1700
 
 //on page load DoPlanner function to set up page
 $(window).on("load", fncDoPlanner());
@@ -15,13 +15,15 @@ function fncDoPlanner() {
   console.log(getFuncName());
 
   //display the current day at the top of the calendar
- fncDisplayCurrentDay();
+  fncDisplayCurrentDay();
 
   //display timeblocks for standard business hours
- fncDisplayTimeBlocksForDay();
+  fncDisplayTimeBlocksForDay();
 
   //colour code each timeblock based on past, present, future
- fncColourTimeBlocks();
+  fncColourTimeBlocks();
+
+  fncLoadSavedEvents();
 }
 
 //Function to Display Current Day
@@ -30,8 +32,7 @@ function fncDisplayCurrentDay() {
 
   fncCheckStartAndEndHours();
 
-
-  if (sbStartHour > sbEndHour){
+  if (sbStartHour > sbEndHour) {
     sbStartHour = sbEndHour;
   }
 
@@ -58,41 +59,27 @@ function fncDisplayTimeBlocksForDay() {
     //add timeblocks for each hour here
     //variable for storing am/pm Time
     let amPmTime = 0;
-    //variable to hold timeblockHTML
-    let timeBlockHTML = "";
-    //TODO structure/html for timeblocks
-    let newTB = $("<row>");
-    newTB.addClass("time-block");
-    newTB.addClass("row");
-    newTB.addClass("hour");
-    newTB.attr("data-hour", index);
-
-    //convert index to am/pm time
+        
     if (index == 0) {
-      amPmTime = index +12 + "am";
+      amPmTime = index + 12 + "am";
     } else if (index < 13) {
       amPmTime = index + "am";
     } else {
       amPmTime = index - 12 + "pm";
     }
 
+    let rowHTML = '<row class="time-block row hour">';
+    let divHourHtml =
+      '<div class="col-1" data-hour=' + index + "> " + amPmTime + " </div>";
+    let eventHTML = '<text class="col-10">' + "test" + "</text>";
+    let saveHTML =
+      '<button type=button class="col-1 savebutton"> Save </button>';
+    let endRowHTML = "</row";
 
+    let totalHTML = rowHTML + divHourHtml + eventHTML + saveHTML + endRowHTML;
 
-   amPmTime;
+    timeblocksContainerEl.append(totalHTML);
 
-   
-
-
- 
-
-
-
-    console.log(amPmTime);
-    newTB.text(amPmTime);
-    timeblocksContainerEl.append(newTB);
-
-  
-    // console.log("timeblocksContainerEl:" + timeblocksContainerEl);
   }
 }
 
@@ -104,14 +91,13 @@ function fncColourTimeBlocks() {
   //loop through standard business hours
   //use data-hour id to set the color
   for (let index = sbStartHour; index <= sbEndHour; index++) {
-    console.log($("#data-hour",index));
+    console.log($("#data-hour", index));
 
-
-   //$("#data-hour",index).css('background-color','red');
-  //ToDo - rather than row...select using ID data-hour
-  $(".row").addClass("past");
-  $(".row").addClass("present");
-  $(".row").addClass("future");
+    //$("#data-hour",index).css('background-color','red');
+    //ToDo - rather than row...select using ID data-hour - then use if statement to select which one
+    // $(".row").addClass("past");
+    // $(".row").addClass("present");
+    // $(".row").addClass("future");
   }
 }
 
@@ -123,28 +109,31 @@ function fncAddEvent() {
 //function to save event to local storage
 function fncSaveEvent() {
   console.log(getFuncName());
+  localStorage.setItem("9a", "something");
 }
 
 //function to check start and end hours
-function fncCheckStartAndEndHours(){
+function fncCheckStartAndEndHours() {
   console.log(getFuncName());
-//check start and end hours 
-if (sbStartHour > sbEndHour){
-  sbStartHour = sbEndHour;
-}
-if (sbStartHour < 0) {
-  sbStartHour = 0;
-}
-if (sbStartHour > 24 ) {
-  sbStartHour = 24;
-}
-if (sbEndHour < 0) {
-  sbEndHour = 0;
-}
-if (sbEndHour > 24 ) {
-  sbEndHour = 24;
+  //check start and end hours
+  if (sbStartHour > sbEndHour) {
+    sbStartHour = sbEndHour;
+  }
+  if (sbStartHour < 0) {
+    sbStartHour = 0;
+  }
+  if (sbStartHour > 24) {
+    sbStartHour = 24;
+  }
+  if (sbEndHour < 0) {
+    sbEndHour = 0;
+  }
+  if (sbEndHour > 24) {
+    sbEndHour = 24;
+  }
 }
 
-
-
+function fncLoadSavedEvents() {
+  console.log(getFuncName());
+  //$("event-item").text(localStorage.getItem('WhereTheEventItemWasStored'));
 }
