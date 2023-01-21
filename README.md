@@ -52,22 +52,21 @@
 - CSS custom properties
 - FlexBox
 - Javascript
-- JScript
 - JQuery
-
 
 ### What I learned
 
-- How to use JQuery to create dynamic HTML 
+- How to use JQuery methods to create dynamic HTML 
 - How to pass and query the event object
 - How to store / retrieve from local storage
+- How to create and edit box
 
 This is a function i found online (see below for link) but i modified it by adding a boolean to store whether the user was in the edit box, so that if they clicked again inside the edit box the html wasn't inserted repeatedly inside the edit box. The original code worked on double-click event listener
 
 ```js
  function fncAddEvent(event) {
     //if we are inside the textarea - don't log clicks as it adds extra html.
-    // use global variable blnInsideEventBox = false;
+    // use global variable blnInsideEventBox to indicate if user is in edit box
 
     let currentText = $(event.target).text();
 
@@ -155,5 +154,6 @@ for (let index = sbStartHour; index <= sbEndHour; index++) {
 
 - Noah (TA) - Tremendous help. I spent 2 days with the QuerySelector running once at the beginning (rather than before it was needed which meant there were no attributes to read!), and also was able to explain how to use JQuery methods to create HTML rather than using the string concatenation way i'd used.
 - Andrew (TA) - Excellent help diagnosing an issue with Live Server not reloading correctly and showing me template literals as way of accessing the defined data-ids
-- Scott (TA)
+- Scott (TA) - I continue to use the README template he posted. 
+- Dean (Instructor) - very helpful extra video on the concepts that would be needed for this project
 
