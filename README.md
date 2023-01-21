@@ -62,6 +62,40 @@
 - How to pass and query the event object
 - How to store / retrieve from local storage
 
+This is a function i found online (see below for link) but i modified it by adding a boolean to store whether the user was in the edit box, so that if they clicked again inside the edit box the html wasn't inserted repeatedly inside the edit box. The original code worked on double-click event listener
+
+```js
+ function fncAddEvent(event) {
+    //if we are inside the textarea - don't log clicks as it adds extra html.
+    // use global variable blnInsideEventBox = false;
+
+    let currentText = $(event.target).text();
+
+    if (!blnInsideEventBox) {
+      $(event.target).html(
+        '<textarea class="form-control" id="newcont" rows="2">' +
+          currentText +
+          "</textarea>"
+      );
+    }
+    //we are now inside the box
+    blnInsideEventBox = true;
+
+    $("#newcont").focus();
+
+    $("#newcont")
+      .focus(function () {  })
+      .blur(function () {
+        var newcont = $("#newcont").val();
+        $(event.target).text(newcont);
+        blnInsideEventBox = false;
+      });
+
+    // $(event.target).text("clicked");
+  }
+
+```
+
 
 This uses the event passed by the Save button click to get the relevent event info and then stores it to local storage
 ```js
@@ -100,8 +134,8 @@ for (let index = sbStartHour; index <= sbEndHour; index++) {
 
 ### Continued development
 
-I would like to further my knowledge of JQuery as it's widely used and very powerful.
-
+- I would like to further my knowledge of JQuery as it's widely used and very powerful.
+- It would be a simple change to save on exiting the edit event box
 
 ### Useful resources
 
@@ -109,6 +143,7 @@ I would like to further my knowledge of JQuery as it's widely used and very powe
 - [Template Literal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) - Very useful concept when working with strings which is the case with data-id set with an index.
 - [Local Storage](https://www.w3schools.com/jsref/prop_win_localstorage.asp) - Useful reference document on how save and retrieve to local storage.
 - [JQuery Event Object](https://api.jquery.com/category/events/event-object/) - Use resource to know to how query the event data that was passed when a button was clicked.
+- [Edit Content With Double Click](https://jsfiddle.net/Logan_Wayne/eovLdrao/) - I modified this code for my project. As i was using single click to edit i had to use a global boolean to store  if we were already editing. Without it the html was repeatedly inserted with each click
 
 
 ## Author

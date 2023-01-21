@@ -3,6 +3,8 @@
 let currentDayEl = $("#currentDay");
 let timeblocksContainerEl = $(".container");
 
+let blnInsideEventBox = false;
+
 //TODO-remove console.logs
 
 let sbStartHour = 9; //0900
@@ -10,14 +12,14 @@ let sbEndHour = 17; //1700
 
 //on page load DoPlanner function to set up page
 $(window).on("load", fncDoPlanner());
-let timeblocksEl = $(".time-block");
+//let timeblocksEl = $(".time-block");
 
 //On User Click on TimeBlock, run Enter Event and Save to Local Storage
-timeblocksEl.on("click", fncAddEvent());
+//timeblocksEl.on("click", fncAddEvent());
 
 //this function runs on page load
 function fncDoPlanner() {
-  console.log(getFuncName());
+  // console.log(getFuncName());
 
   //display the current day at the top of the calendar
   fncDisplayCurrentDay();
@@ -33,9 +35,38 @@ function fncDoPlanner() {
   //Once page loaded add listener for Save Button and Event Data
   let eventDataEl = $(".eventData");
   eventDataEl.on("click", function (event) {
-    //allow user to type data in
+    fncAddEvent(event);
   });
 
+  //function to enter event and save to local storage
+  function fncAddEvent(event) {
+    //if we are inside the textarea - don't log clicks as it adds extra html.
+    // use global variable blnInsideEventBox = false;
+
+    let currentText = $(event.target).text();
+
+    if (!blnInsideEventBox) {
+      $(event.target).html(
+        '<textarea class="form-control" id="newcont" rows="2">' +
+          currentText +
+          "</textarea>"
+      );
+    }
+    //we are now inside the box
+    blnInsideEventBox = true;
+
+    $("#newcont").focus();
+
+    $("#newcont")
+      .focus(function () {  })
+      .blur(function () {
+        var newcont = $("#newcont").val();
+        $(event.target).text(newcont);
+        blnInsideEventBox = false;
+      });
+
+    // $(event.target).text("clicked");
+  }
   // Pass event through to function SaveEvent to know which save was clicked
   let saveBtnEl = $(".saveBtn");
   saveBtnEl.on("click", function (event) {
@@ -45,7 +76,7 @@ function fncDoPlanner() {
 
 //Function to Display Current Day
 function fncDisplayCurrentDay() {
-  console.log(getFuncName());
+  // console.log(getFuncName());
 
   //This function checks that the start and end hours at from 0 to 24 and corrects them if not
   fncCheckStartAndEndHours();
@@ -68,7 +99,7 @@ function fncDisplayCurrentDay() {
 
 //Function to display timeblocks for standard business hours
 function fncDisplayTimeBlocksForDay() {
-  console.log(getFuncName());
+  //  console.log(getFuncName());
 
   //add timeblocks to timeblockContainerEL
   for (let index = sbStartHour; index <= sbEndHour; index++) {
@@ -77,7 +108,7 @@ function fncDisplayTimeBlocksForDay() {
     //variable for storing am/pm Time
     let amPmTime = 0;
     let newRow = $("<div>");
-    newRow.addClass("time-block row hour");
+    newRow.addClass("time-block row");
     newRow.attr("data-row", index);
 
     if (index == 0) {
@@ -108,6 +139,7 @@ function fncDisplayTimeBlocksForDay() {
     newSave.addClass("col-1 saveBtn");
     newSave.attr("data-save", index);
     newSave.text("SAVE");
+    
 
     newRow.append(newSave);
 
@@ -131,7 +163,7 @@ function fncDisplayTimeBlocksForDay() {
 //function to colour timeblocks based on current time and whether time block is past, present, future
 //past, present and future are css classes
 function fncColourTimeBlocks() {
-  console.log(getFuncName());
+  // console.log(getFuncName());
 
   //loop through standard business hours (set at top)
   //use data-row id to set the color
@@ -154,15 +186,9 @@ function fncColourTimeBlocks() {
   }
 }
 
-//TODO
-//function to enter event and save to local storage
-function fncAddEvent() {
-  console.log(getFuncName());
-}
-
 //function to save event to local storage
 function fncSaveEvent(event) {
-  console.log(getFuncName());
+  //console.log(getFuncName());
   //use which save button was pressed as key for localstorage
   let localStorageKey = $(event.target).data("save");
   //use the button that was pressed (localStorageKey) to get data/text from same row data-event
@@ -171,21 +197,17 @@ function fncSaveEvent(event) {
   localStorage.setItem(localStorageKey, eventData);
 }
 
-//TODO
 function fncLoadSavedEvents() {
-  console.log(getFuncName());
+  // console.log(getFuncName());
   for (let index = sbStartHour; index <= sbEndHour; index++) {
-    // console.log(index+" "+ localStorage.getItem(index));
-    // let tempStr = localStorage.getItem(index);
-   // console.log(localStorage.getItem(index) + index);
-    //console.log( $(`[data-event=${index}]`).text());
-    $(`[data-event=${index}]`).text(localStorage.getItem(index));
+    //console.log("index:"+index+" "+ (localStorage.getItem(index)|| ""));
+    $(`[data-event=${index}]`).text(localStorage.getItem(index) || " ");
   }
 }
 
 //function to check start and end hours
 function fncCheckStartAndEndHours() {
-  console.log(getFuncName());
+  // console.log(getFuncName());
   //check start and end hours
   if (sbStartHour > sbEndHour) {
     sbStartHour = sbEndHour;
