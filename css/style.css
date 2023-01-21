@@ -43,7 +43,7 @@ textarea {
   background-color: #ffffff;
   color: #000000;
   border-top: 1px dashed #000000;
- 
+
 }
 
 .past {
@@ -68,10 +68,10 @@ textarea {
   background-color: #06aed5;
   color: white;
 
-  background-image: url(../images//saveBtn.png);   
-  background-repeat: no-repeat; 
+  background-image: url(../images//saveBtn.png);
+  background-repeat: no-repeat;
   border: none;
-  background-position: center center; 
+  background-position: center center;
 }
 
 .saveBtn i:hover {
@@ -82,8 +82,8 @@ textarea {
 
 
 .eventData {
-  
-  height: 100%; 
-  
- 
+
+  height: 100%;
+
+
 }
