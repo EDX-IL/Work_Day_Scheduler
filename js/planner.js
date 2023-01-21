@@ -138,7 +138,7 @@ function fncDisplayTimeBlocksForDay() {
     let newSave = $("<button>");
     newSave.addClass("col-1 saveBtn");
     newSave.attr("data-save", index);
-    newSave.text("SAVE");
+    //newSave.text("SAVE");
     
 
     newRow.append(newSave);

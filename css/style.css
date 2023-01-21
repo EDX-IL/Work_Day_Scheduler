@@ -71,6 +71,7 @@ textarea {
   background-image: url(../images//saveBtn.png);   
   background-repeat: no-repeat; 
   border: none;
+  background-position: center center; 
 }
 
 .saveBtn i:hover {
