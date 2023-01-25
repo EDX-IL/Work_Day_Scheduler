@@ -38,8 +38,8 @@
 
 ### Links
 
-- Solution URL: [https://github.com/EDX-IL/Work_Day_Scheduler](https://your-solution-url.com)
-- Live Site URL: [https://edx-il.github.io/Work_Day_Scheduler/](https://your-live-site-url.com)
+- Solution URL: [https://github.com/EDX-IL/Work_Day_Scheduler](https://github.com/EDX-IL/Work_Day_Scheduler)
+- Live Site URL: [https://edx-il.github.io/Work_Day_Scheduler/](https://edx-il.github.io/Work_Day_Scheduler/)
 
 ## My process
 
